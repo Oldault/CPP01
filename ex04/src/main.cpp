@@ -44,5 +44,8 @@ int main (int ac, char **av)
 
   inFile.close();
   outFile.close();
+
+  std::cout << KGRN << "\n\tProgram was executed with Success\n\tPlease find the result inside: " << UNDL_A << outFileName << RST << "\n\n";
+
   return 0;
 }
