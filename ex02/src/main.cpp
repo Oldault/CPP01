@@ -15,5 +15,6 @@ int main()
   std::cout << "Value of brain:\t\t" << KGRN << brain << RST << std::endl;
   std::cout << "Value of stringPTR:\t" << KBLU << *stringPTR << RST << std::endl;
   std::cout << "Value of stringREF:\t" << KYEL << stringREF << RST << "\n";
+  
   return 0;
 }
