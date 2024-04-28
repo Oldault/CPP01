@@ -1,5 +1,4 @@
 #include "Harl.hpp"
-#include "Colors.h"
 
 Harl::Harl()
 {

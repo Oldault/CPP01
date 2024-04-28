@@ -1,6 +1,7 @@
 #ifndef _HARL_HPP_
 # define _HARL_HPP_
 
+#include "Colors.h"
 #include <string>
 #include <iostream>
 #include <cstring>
