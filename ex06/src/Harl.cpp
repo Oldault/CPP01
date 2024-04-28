@@ -1,5 +1,4 @@
 #include "Harl.hpp"
-#include "Colors.h"
 
 Harl::Harl()
 {
@@ -38,16 +37,55 @@ void Harl::error( void )
   std::cout << FRED("This is unacceptable! I want to speak to the manager now.") << "\n\n";
 }
 
-void Harl::complain( std::string level ) {
-  for (int i = 0; i < 4; i++) {
-    if (callMap[i].key == level)
-    {
-      while (i != 4)
-      {
-        (this->*callMap[i++].call)();
-      }
-      return ;
-    }
+// void Harl::complain( std::string level ) {
+//   for (int i = 0; i < 4; i++) {
+//     if (callMap[i].key == level) {
+//       while (i != 4)
+//         (this->*callMap[i++].call)();
+//       return ;
+//     }
+//   }
+//   std::cout << ITAL_A << "[ Probably complaining about insignificant problems ]" << RST << "\n\n";
+// }
+
+enum string_code {
+    DEBUG,
+    INFO,
+    WARNING,
+    ERROR,
+    unknown
+};
+
+string_code hashit (std::string const& inString)
+{
+    if (inString == "DEBUG") return DEBUG;
+    if (inString == "INFO") return INFO;
+    if (inString == "WARNING") return WARNING;
+    if (inString == "ERROR") return ERROR;
+    else return unknown;
+}
+
+void Harl::complain( std::string level )
+{
+  unsigned int i = 0;
+  switch (hashit(level))
+  {
+    case DEBUG:
+      (this->*callMap[i].call)();
+      break;
+    case INFO:
+      (this->*callMap[i = 1].call)();
+      break;
+    case WARNING:
+      (this->*callMap[i = 2].call)();
+      break;
+    case ERROR:
+      (this->*callMap[i = 3].call)();
+      break;
+    case unknown: std::cout << ITAL_A << "[ Probably complaining about insignificant problems ]" << RST << "\n\n"; break;
   }
-  std::cout << ITAL_A << "[ Probably complaining about insignificant problems ]" << RST << "\n\n";
+  if (hashit(level) != unknown) {
+    while (++i != 4)
+      (this->*callMap[i].call)();
+  }
 }
